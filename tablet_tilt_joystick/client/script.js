@@ -29,15 +29,17 @@ window.addEventListener('deviceorientation', event => {
         y -= 90;
         y /= 90;
         globalY = y;
+        y *= -1; // invert pitch controls
         
         var x = event.beta;
-        if (y < 0){
+        if (y > 0){
             if (x < 0) x = -180 - x;
             else x = 180 - x;
         }
         x /= 90;
         globalX = x;
         
+
         socket.emit('update_joystick_position', {x: x, y: y});
     }
 }, true);
