@@ -12,6 +12,6 @@ def init_joystick():
 def map_value(value, in_min, in_max, out_min, out_max):
     return out_min + (((value - in_min) / (in_max - in_min)) * (out_max - out_min))
 
-def update_joystick_position(x: float, y: float):
-    device.emit(uinput.ABS_X, int(map_value(x, -1, 1, 0, 255)))
-    device.emit(uinput.ABS_Y, int(map_value(y, -1, 1, 0, 255)))
+def set_position(roll: float, pitch: float):
+    device.emit(uinput.ABS_X, int(map_value(roll, -1, 1, 0, 255)))
+    device.emit(uinput.ABS_Y, int(map_value(pitch, -1, 1, 0, 255)))

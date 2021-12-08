@@ -27,15 +27,15 @@ def connect(sid, environ, auth: str):
 @sio.event
 def update_joystick_position(sid, data):
     '''
-    expects data to be a json like {x: float -1 to 1, y: float -1 to 1}
+    expects data to be a json like {roll: float -1 to 1, pitch: float -1 to 1}
     '''
     if event_callback is not None:
-        event_callback(data['x'], data['y'])
+        event_callback(data['roll'], data['pitch'])
 
 def start(port: int, _event_callback=None):
     global event_callback
     '''
-    event_callback should be a function accepting args x and y, each ranging from -1 to 1
+    event_callback should be a function accepting args roll and pitch, each ranging from -1 to 1
     '''
     event_callback = _event_callback
 

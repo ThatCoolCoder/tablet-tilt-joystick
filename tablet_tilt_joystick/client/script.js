@@ -3,8 +3,12 @@ socket = io.connect('', {
 });
 
 var connected = false;
-var globalX;
-var globalY;
+
+const pitchSensitivitySlider = document.getElementById('pitchSensitivity');
+const rollSensitivitySlider = document.getElementById('rollSensitivity');
+
+const pitchTrimSlider = document.getElementById('pitchTrim');
+const rollTrimSlider = document.getElementById('rollTrim');
 
 socket.on('connect', () => {
     alert('Connected');
@@ -24,27 +28,25 @@ window.addEventListener('deviceorientation', event => {
         // Yes it's terrible weird code but it's because the center position of the things
         // is in a totally different position from what I want
         
-        var y = event.gamma;
-        if (y < 0) y += 180;
-        y -= 90;
-        y /= 90;
-        globalY = y;
-        y *= -1; // invert pitch controls
+        var pitch = event.gamma;
+        if (pitch < 0) pitch += 180;
+        pitch -= 90;
+        pitch /= 90;
+        pitch *= -1; // invert pitch controls
         
-        var x = event.beta;
-        if (y > 0){
-            if (x < 0) x = -180 - x;
-            else x = 180 - x;
+        var roll = event.beta;
+        if (pitch > 0){
+            if (roll < 0) roll = -180 - roll;
+            else roll = 180 - roll;
         }
-        x /= 90;
-        globalX = x;
+        roll /= 90;
         
+        pitch *= Number(pitchSensitivitySlider.value);
+        pitch += Number(pitchTrimSlider.value);
 
-        socket.emit('update_joystick_position', {x: x, y: y});
+        roll *= Number(rollSensitivitySlider.value);
+        pitch += Number(rollTrimSlider.value);
+
+        socket.emit('update_joystick_position', {roll: roll, pitch: pitch});
     }
 }, true);
-
-setInterval(() => {
-    document.getElementById('x').innerText = globalX;
-    document.getElementById('y').innerText = globalY;
-}, 100);
