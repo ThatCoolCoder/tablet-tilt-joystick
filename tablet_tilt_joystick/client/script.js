@@ -6,6 +6,8 @@ var connected = false;
 
 const connectedLabel = document.getElementById('connected');
 
+const globalToggleCheckbox = document.getElementById('globalToggle');
+
 const elevatorSensitivitySlider = document.getElementById('elevatorSensitivity');
 const aileronSensitivitySlider = document.getElementById('aileronSensitivity');
 const rudderSensitivitySlider = document.getElementById('rudderSensitivity');
@@ -76,9 +78,12 @@ rudderSlider.addEventListener('touchend', () => {
 });
 
 setInterval(() => {
-    currentValues.rudder = Number(rudderSlider.value);
+    if (globalToggleCheckbox.checked)
+    {
+        currentValues.rudder = Number(rudderSlider.value);
 
-    socket.emit('update_joystick_position', currentValues);
+        socket.emit('update_joystick_position', currentValues);
 
-    if (! rudderActivated) rudderSlider.value = 0;
+        if (! rudderActivated) rudderSlider.value = 0;
+    }
 }, updateInterval);

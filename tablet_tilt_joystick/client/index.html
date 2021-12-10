@@ -11,22 +11,28 @@
         <p>For this program to work, hold your tablet in landscape mode with the home button on the right. This works on apple tablets, I haven't tested with other devices</p>
 
         <p id="connected">Disconnected</p>
+        <label for="globalToggle">Global joystick toggle</label>
+        <input type="checkbox" id="globalToggle" />
         
-        <label for="elevatorSensitivity">elevator sensititivity</label>
-        <input type="range" min="0" max="5" step="0.01" value="1" id="elevatorSensitivity" />
         <br />
-        <label for="aileronSensitivity">aileron sensititivity</label>
-        <input type="range" min="0" max="5" step="0.01" value="1" id="aileronSensitivity" />
         <br />
-        <label for="rudderSensitivity">rudder sensititivity</label>
-        <input type="range" min="0" max="5" step="0.01" value="1" id="rudderSensitivity" />
+
+
+        <label for="elevatorSensitivity">elevator sensititivity (0 - 3)</label>
+        <input type="range" min="0" max="3" step="0.01" value="1" id="elevatorSensitivity" />
+        <br />
+        <label for="aileronSensitivity">aileron sensititivity (0 - 3)</label>
+        <input type="range" min="0" max="3" step="0.01" value="1" id="aileronSensitivity" />
+        <br />
+        <label for="rudderSensitivity">rudder sensititivity (0 - 3)</label>
+        <input type="range" min="0" max="3" step="0.01" value="1" id="rudderSensitivity" />
 
         <br />
         <br />
         <br />
 
         <label for="elevatorTrim">elevator trim</label>
-        <div><input type="range" min="-0.5" max="0.5" step="0.01" id="elevatorTrim" /></div>
+        <input type="range" min="-0.5" max="0.5" step="0.01" id="elevatorTrim" />
         <br />
         <label for="aileronTrim">aileron trim</label>
         <input type="range" min="-0.5" max="0.5" step="0.01" id="aileronTrim" />
