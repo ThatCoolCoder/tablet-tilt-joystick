@@ -9,20 +9,39 @@
     <body>
         <h1>Tablet tilting joystick</h1>
         <p>For this program to work, hold your tablet in landscape mode with the home button on the right. This works on apple tablets, I haven't tested with other devices</p>
+
+        <p id="connected">Disconnected</p>
         
-        <label for="pitchSensitivity">Pitch sensititivity</label>
-        <input type="range" min="0" max="5" step="0.01" value="1" id="pitchSensitivity" />
+        <label for="elevatorSensitivity">elevator sensititivity</label>
+        <input type="range" min="0" max="5" step="0.01" value="1" id="elevatorSensitivity" />
         <br />
-        <label for="pitchSensitivity">Roll sensititivity</label>
-        <input type="range" min="0" max="5" step="0.01" value="1" id="rollSensitivity" />
+        <label for="aileronSensitivity">aileron sensititivity</label>
+        <input type="range" min="0" max="5" step="0.01" value="1" id="aileronSensitivity" />
+        <br />
+        <label for="rudderSensitivity">rudder sensititivity</label>
+        <input type="range" min="0" max="5" step="0.01" value="1" id="rudderSensitivity" />
+
         <br />
         <br />
         <br />
-        <label for="pitchTrim">Pitch trim</label>
-        <input type="range" min="-0.5" max="0.5" step="0.01" id="pitchTrim" />
+
+        <label for="elevatorTrim">elevator trim</label>
+        <div><input type="range" min="-0.5" max="0.5" step="0.01" id="elevatorTrim" /></div>
         <br />
-        <label for="rollTrim">Roll trim</label>
-        <input type="range" min="-0.5" max="0.5" step="0.01" id="rollTrim" />
+        <label for="aileronTrim">aileron trim</label>
+        <input type="range" min="-0.5" max="0.5" step="0.01" id="aileronTrim" />
+        <br />
+        <label for="rudderTrim">rudder trim</label>
+        <input type="range" min="-0.5" max="0.5" step="0.01" id="rudderTrim" />
+
+        <br />
+        <br />
+        <br />
+        <div id="rudderHolder">
+            <label>Rudder control</label>
+            <br />
+            <input id="rudder" type="range" min="-1" max="1" step="0.01" />
+        </div>
     </body>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js"></script>

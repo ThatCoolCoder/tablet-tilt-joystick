@@ -4,19 +4,35 @@ socket = io.connect('', {
 
 var connected = false;
 
-const pitchSensitivitySlider = document.getElementById('pitchSensitivity');
-const rollSensitivitySlider = document.getElementById('rollSensitivity');
+const connectedLabel = document.getElementById('connected');
 
-const pitchTrimSlider = document.getElementById('pitchTrim');
-const rollTrimSlider = document.getElementById('rollTrim');
+const elevatorSensitivitySlider = document.getElementById('elevatorSensitivity');
+const aileronSensitivitySlider = document.getElementById('aileronSensitivity');
+const rudderSensitivitySlider = document.getElementById('rudderSensitivity');
+
+const elevatorTrimSlider = document.getElementById('elevatorTrim');
+const aileronTrimSlider = document.getElementById('aileronTrim');
+const rudderTrimSlider = document.getElementById('rudderTrim');
+
+const rudderSlider = document.getElementById('rudder');
+
+var currentValues = {
+    elevator: 0,
+    aileron: 0,
+    rudder: 0
+}
+
+var rudderActivated = false;
+
+const updateInterval = 50;
 
 socket.on('connect', () => {
-    alert('Connected');
     connected = true;
+    connectedLabel.innerText = 'Connected';   
 });
 
 socket.on('disconnect', () => {
-    alert('Disconnected');
+    connectedLabel.innerText = 'Disconnected';
 });
 
 socket.on('connect_failed', () => {
@@ -28,25 +44,41 @@ window.addEventListener('deviceorientation', event => {
         // Yes it's terrible weird code but it's because the center position of the things
         // is in a totally different position from what I want
         
-        var pitch = event.gamma;
-        if (pitch < 0) pitch += 180;
-        pitch -= 90;
-        pitch /= 90;
-        pitch *= -1; // invert pitch controls
+        var elevator = event.gamma;
+        if (elevator < 0) elevator += 180;
+        elevator -= 90;
+        elevator /= 90;
+        elevator *= -1; // invert elevator controls
         
-        var roll = event.beta;
-        if (pitch > 0){
-            if (roll < 0) roll = -180 - roll;
-            else roll = 180 - roll;
+        var aileron = event.beta;
+        if (elevator > 0){
+            if (aileron < 0) aileron = -180 - aileron;
+            else aileron = 180 - aileron;
         }
-        roll /= 90;
+        aileron /= 90;
         
-        pitch *= Number(pitchSensitivitySlider.value);
-        pitch += Number(pitchTrimSlider.value);
+        elevator *= Number(elevatorSensitivitySlider.value);
+        elevator += Number(elevatorTrimSlider.value);
+        currentValues.elevator = elevator;
 
-        roll *= Number(rollSensitivitySlider.value);
-        pitch += Number(rollTrimSlider.value);
-
-        socket.emit('update_joystick_position', {roll: roll, pitch: pitch});
+        aileron *= Number(aileronSensitivitySlider.value);
+        aileron += Number(aileronTrimSlider.value);
+        currentValues.aileron = aileron;
     }
 }, true);
+
+rudderSlider.addEventListener('touchstart', () => {
+    rudderActivated = true;
+});
+
+rudderSlider.addEventListener('touchend', () => {
+    rudderActivated = false;
+});
+
+setInterval(() => {
+    currentValues.rudder = Number(rudderSlider.value);
+
+    socket.emit('update_joystick_position', currentValues);
+
+    if (! rudderActivated) rudderSlider.value = 0;
+}, updateInterval);
