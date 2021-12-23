@@ -2,6 +2,7 @@ import os
 import socketio
 import eventlet
 
+# todo: add password system
 # password = input('Choose password needed by clients to use (leave blank for none): ')
 password = ''
 
