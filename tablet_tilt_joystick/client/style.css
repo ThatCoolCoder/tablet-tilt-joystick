@@ -2,16 +2,21 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-
-#rudderHolder {
+#settingsHolder {
+    margin: auto;
     position: absolute;
     right: 50px;
-    bottom: 50px;
 }
+/* 
+#rudderHolder {
+    margin: auto;
+    position: absolute;
+    left: 25px;
+} */
 
 #rudder {
     height: 50px;
     width: 150px;
-    margin-right: 75px;
+    margin-left: 75px;
     transform: scale(2);
 }

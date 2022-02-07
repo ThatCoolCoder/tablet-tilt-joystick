@@ -1,2 +1,4 @@
 eventlet
 python-socketio
+pillow
+qrcode[pil]
