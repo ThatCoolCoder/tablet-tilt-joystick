@@ -6,7 +6,7 @@ It's called **tablet** tilt joystick but it will work with any handheld device w
 
 Runs a light web server which you can connect to in a browser on your tablet.
 
-**It currently does not work on newer versions of IOS (> 12.2 I think) as Apple requires https in order to use motion**
+**It currently does not work on newer versions of Ipad Safari (those with IOS >= 12.2 I think) as Apple requires https in order to use motion**
 
 ## Basic usage
 
@@ -20,11 +20,15 @@ For advanced usage instructions, run `python3 -m tablet_tilt_joystick -h`.
 
 If your tablet fails to find the server, make sure this program isn't blocked by a firewall. Also try navigating to your computers ip manually on the tablet.
 
-## Publishing to pypi:
+## Publishing to pypi (for devs)
 
 First install the required packages: `pip install build twine`.
 
 Then run `python -m build` from this directory. If there were no errors then run `python3 -m twine upload dist/*`.
+
+## Roadmap:
+- Make it work on Windows (requires port of uinput)
+- Give users a warning when orientation sensor is blocked
 
 ## Changelog:
 
