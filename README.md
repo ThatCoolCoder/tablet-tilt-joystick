@@ -6,6 +6,8 @@ It's called **tablet** tilt joystick but it will work with any handheld device w
 
 Runs a light web server which you can connect to in a browser on your tablet.
 
+**It currently does not work on newer versions of IOS (> 12.2 I think) as Apple requires https in order to use motion**
+
 ## Basic usage
 
 Install with pip (`pip3 install tablet-tilt-joystick`) then run with `python3 -m tablet_tilt_joystick` or just `tablet_tilt_joystick` and connect to `<your ip>:4242` on a mobile device to get started. If a suitable image display program is found, it will also show a QR code that you can scan with a mobile device to get to the IP quickly. The joystick will show up in your system as something like `python-uinput`.
@@ -37,4 +39,4 @@ Then run `python -m build` from this directory. If there were no errors then run
 - Opens QR code
 
 #### 1.0.0 (not published on pypi)
-- Basic functionality of 
+- Basic functionality of tilting tablet
