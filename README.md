@@ -6,7 +6,16 @@ It's called **tablet** tilt joystick but it will work with any handheld device w
 
 Runs a light web server which you can connect to in a browser on your tablet.
 
-**It currently does not work on newer versions of Ipad Safari (those with IOS >= 12.2 I think) as Apple requires https in order to use motion**
+**It currently does not work on most (any?) mobile browsers as they either don't support orientation sensor at all or require HTTPS to use it.** 
+This has been tested on:
+- IOS 12 + Safari
+- IOS 12 + Opera
+- Android + Firefox
+- Android + Opera
+- Android + Chrome
+- Android + Samsung Internet
+
+The only platform I found that it does work on is Safari on IOS 11 but that's quite outdated.
 
 ## Basic usage
 
@@ -18,7 +27,7 @@ For advanced usage instructions, run `python3 -m tablet_tilt_joystick -h`.
 
 ## Troubleshooting
 
-If your tablet fails to find the server, make sure this program isn't blocked by a firewall. Also try navigating to your computers ip manually on the tablet.
+If your tablet fails to find the server, make sure this program isn't blocked by a firewall. Also try navigating to your computers IP manually on the tablet.
 
 ## Publishing to pypi (for devs)
 
